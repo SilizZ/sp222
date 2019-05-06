@@ -1,0 +1,87 @@
+spring:
+  application:
+    name: order-service
+    
+#server:
+#  port: 8201
+  
+  
+eureka:
+  #默认使用主机名注册
+  client:
+    service-url:
+      defaultZone: http://eureka1:2001/eureka, http://eureka2:2002/eureka
+      
+  #配置使用ip注册
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+ 
+    #prefer-ip-address: 使用ip地址注册，而不是主机名
+    #instance-id: 注册后在列表中显示的名称
+      
+      
+      
+      
+feign:
+  hystrix:
+    enabled: true
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+        
+---
+spring:
+  profiles: order1
+  
+server:
+  port: 8201
+  
+---
+spring:
+  profiles: order2
+  
+server:
+  port: 8202   
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
